@@ -1,9 +1,24 @@
 package com.example.diybyu.project;
 
-import java.awt.*;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table
+
 public class Project {
+    @Id
+    @SequenceGenerator(
+            name = "project_sequence",
+            sequenceName = "project_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "project_sequence"
+    )
+
     private Long id;
     private LocalDate date_added;
     private String name;
@@ -65,8 +80,10 @@ public class Project {
         this.name = name;
     }
 
-    public Integer getTime_needed() {
-        return time_needed;
+    public String getTime_needed() {
+        int hour = time_needed / 60;
+        int minute = time_needed % 60;
+        return hour+" hours, "+minute+" minutes";
     }
 
     public void setTime_needed(Integer time_needed) {
