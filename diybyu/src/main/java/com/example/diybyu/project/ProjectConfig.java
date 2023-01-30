@@ -19,7 +19,7 @@ public class ProjectConfig {
                     360,
                     "Knitting needles size 6 and 5 balls of yarn",
             "A beginner knitting project where repetition is key.",
-            "./main/resources/images/knit_scarf.jpg"
+            "/src/main/resources/images/knit_scarf.jpg"
             );
 
             Project oriBateau = new Project(

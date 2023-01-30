@@ -3,12 +3,10 @@ package com.example.diybyu.project;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class ProjectService {
@@ -20,9 +18,12 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
-    //return a static list
     public List<Project> getProjects(){
         return projectRepository.findAll();
+    }
+
+    public Object getProjectById(Long id){
+        return projectRepository.findById(id);
     }
 
     //add new project

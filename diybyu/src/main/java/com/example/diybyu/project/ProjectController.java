@@ -25,20 +25,30 @@ public class ProjectController {
         return projectService.getProjects();
     }
 
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(path = "/{id}")
+    public Object getProjectById(@PathVariable("id") Long id){
+        System.out.println("getting project by id");
+        return projectService.getProjectById(id);
+    }
+
+
+
     //add new resources, take request and map
     @PostMapping
     public void registerNewProject(@RequestBody Project project){
         projectService.addNewProject(project);
     }
 
-    @DeleteMapping(path="{projectId}")
-    public void deleteProject(@PathVariable("projectId") Long projectId){
-        projectService.deleteProject(projectId);
+    @DeleteMapping(path="{id}")
+    public void deleteProject(@PathVariable("id") Long id){
+        projectService.deleteProject(id);
     }
 
-    @PutMapping(path = "{projectId}")
+    @PutMapping(path = "{id}")
     public void updateProject(
-            @PathVariable("projectId") Long projectId,
+            @PathVariable("id") Long projectId,
             @RequestParam(required = false) LocalDate date_added,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) Integer time_needed,
