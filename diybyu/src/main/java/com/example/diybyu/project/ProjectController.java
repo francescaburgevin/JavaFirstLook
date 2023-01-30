@@ -1,7 +1,6 @@
 package com.example.diybyu.project;
 
 //all resources for the api
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +19,7 @@ public class ProjectController {
     }
 
     //get data
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/")
     public List<Project> getProjects(){
         return projectService.getProjects();
