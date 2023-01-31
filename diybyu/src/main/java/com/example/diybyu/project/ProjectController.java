@@ -8,7 +8,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="api/v1/project")
+@RequestMapping(path="api/v1/project/")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProjectController {
 
     private final ProjectService projectService;
@@ -36,7 +37,8 @@ public class ProjectController {
 
 
     //add new resources, take request and map
-    @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/")
     public void registerNewProject(@RequestBody Project project){
         projectService.addNewProject(project);
     }
@@ -49,12 +51,12 @@ public class ProjectController {
     @PutMapping(path = "{id}")
     public void updateProject(
             @PathVariable("id") Long projectId,
-            @RequestParam(required = false) LocalDate date_added,
+            @RequestParam(required = false) LocalDate dateAdded,
             @RequestParam(required = false) String name,
-            @RequestParam(required = false) Integer time_needed,
+            @RequestParam(required = false) Integer timeNeeded,
             @RequestParam(required = false) String material,
             @RequestParam(required = false) String description,
             @RequestParam(required = false) String thumbnail) {
-                projectService.updateProject(projectId, date_added, name, time_needed, material, description, thumbnail);
+                projectService.updateProject(projectId, dateAdded, name, timeNeeded, material, description, thumbnail);
             }
 }

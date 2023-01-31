@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 @Entity
 @Table
-
 public class Project {
     @Id
     @SequenceGenerator(
@@ -20,9 +19,9 @@ public class Project {
     )
 
     private Long id;
-    private LocalDate date_added;
+    private LocalDate dateAdded;
     private String name;
-    private Integer time_needed;
+    private Integer timeNeeded;
     private String material;
     private String description;
     private String thumbnail;
@@ -32,23 +31,23 @@ public class Project {
     }
 
     // constructor with id
-    public Project(Long id, LocalDate date_added, String name, Integer time_needed,
+    public Project(Long id, LocalDate dateAdded, String name, Integer timeNeeded,
                    String material, String description, String thumbnail) {
         this.id = id;
-        this.date_added = date_added;
+        this.dateAdded = dateAdded;
         this.name = name;
-        this.time_needed = time_needed;
+        this.timeNeeded = timeNeeded;
         this.material = material;
         this.description = description;
         this.thumbnail = thumbnail;
     }
 
     //constructor without id
-    public Project(LocalDate date_added, String name, Integer time_needed,
+    public Project(LocalDate dateAdded, String name, Integer timeNeeded,
                    String material, String description, String thumbnail) {
-        this.date_added = date_added;
+        this.dateAdded = dateAdded;
         this.name = name;
-        this.time_needed = time_needed;
+        this.timeNeeded = timeNeeded;
         this.material = material;
         this.description = description;
         this.thumbnail = thumbnail;
@@ -64,12 +63,12 @@ public class Project {
         this.id = id;
     }
 
-    public LocalDate getDate_added() {
-        return date_added;
+    public LocalDate getDateAdded() {
+        return dateAdded;
     }
 
-    public void setDate_added(LocalDate date_added) {
-        this.date_added = date_added;
+    public void setDateAdded(LocalDate dateAdded) {
+        this.dateAdded = dateAdded;
     }
 
     public String getName() {
@@ -80,14 +79,14 @@ public class Project {
         this.name = name;
     }
 
-    public String getTime_needed() {
-        int hour = time_needed / 60;
-        int minute = time_needed % 60;
+    public String getTimeNeeded() {
+        int hour = timeNeeded / 60;
+        int minute = timeNeeded % 60;
         return hour+" hours, "+minute+" minutes";
     }
 
-    public void setTime_needed(Integer time_needed) {
-        this.time_needed = time_needed;
+    public void setTimeNeeded(Integer timeNeeded) {
+        this.timeNeeded = timeNeeded;
     }
 
     public String getMaterial() {
@@ -118,9 +117,9 @@ public class Project {
     public String toString() {
         return "Project{" +
                 "id=" + id +
-                ", date_added=" + date_added +
+                ", date_added=" + dateAdded +
                 ", name='" + name + '\'' +
-                ", time_needed=" + time_needed +
+                ", time_needed=" + timeNeeded +
                 ", material='" + material + '\'' +
                 ", description=" + description +
                 ", thumbnail='" + thumbnail + '\'' +

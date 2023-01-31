@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class ProjectService {
@@ -28,28 +29,30 @@ public class ProjectService {
 
     //add new project
     public void addNewProject(Project project){
+        System.out.println(project);
         projectRepository.save(project);
     }
 
-    //public void findKeyword(Project project){
-    //    Optional<Project> projectOptional = projectRepository.findProjectByKeyword(project.toString());
-    //    if(projectOptional.isPresent()){
-    //        return project;
-    //    }
-    //}
-
-    public void deleteProject(Long projectId){
-        boolean exists = projectRepository.existsById(projectId);
-        if(!exists){
-            throw new IllegalStateException("Project with id "+projectId+" does not exist.");
+    public List<Project> findByKeyword(String keyword){
+        List<Project> projectByKeyword = projectRepository.findProjectByKeyword(keyword);
+        if (projectByKeyword.isEmpty()){
+            throw new IllegalStateException("nothing found");
         }
-        projectRepository.deleteById(projectId);
+        return projectByKeyword;
+    }
+
+    public void deleteProject(Long id){
+        boolean exists = projectRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("Project with id "+id+" does not exist.");
+        }
+        projectRepository.deleteById(id);
     }
 
 
     @Transactional
-    public void updateProject(Long projectId, LocalDate date_added,
-                              String name, Integer time_needed,
+    public void updateProject(Long projectId, LocalDate dateAdded,
+                              String name, Integer timeNeeded,
                               String material, String description,
                               String thumbnail){
         Project project = projectRepository.findById(projectId)
