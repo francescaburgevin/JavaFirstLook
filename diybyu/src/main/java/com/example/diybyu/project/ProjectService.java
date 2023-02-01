@@ -53,7 +53,7 @@ public class ProjectService {
 
     @Transactional
     public void updateProject(
-            Long projectId,
+            Long id,
             LocalDate dateAdded,
             String name,
             Integer timeNeeded,
@@ -61,9 +61,9 @@ public class ProjectService {
             String description,
             String thumbnail
     ){
-        Project project = projectRepository.findById(projectId)
+        Project project = projectRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException(
-                        "Project with id "+projectId+" does not exist."
+                        "Project with id "+id+" does not exist."
                 ));
         if(
                 name != null && name.length() > 0 &&
@@ -109,6 +109,7 @@ public class ProjectService {
             project.setDateAdded(LocalDate.now());
         }
 
+        projectRepository.save(project);
         //must finish. add date
     }
 

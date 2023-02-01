@@ -45,12 +45,24 @@ public class ProjectController {
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path="/{id}")
     public void deleteProject(@PathVariable("id") Long id){
-        System.out.println("deleting project "+id);
         projectService.deleteProject(id);
     }
 
+
     @CrossOrigin(origins = "http://localhost:4200")
-    @PutMapping(path = "{id}")
+    @PutMapping(path = "/{id}")
+    public void updateProject(
+            @PathVariable("id") Long id,
+            @RequestBody Project project
+    ){
+        System.out.println("updating project "+id);
+        System.out.println(project);
+        projectService.updateProject(project.getId(), project.getDateAdded(), project.getName(), project.getTimeNeeded(), project.getMaterial(), project.getDescription(), project.getThumbnail());
+
+    }
+    /*
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping(path = "/{id}")
     public void updateProject(
             @PathVariable("id") Long projectId,
             @RequestParam(required = false) LocalDate dateAdded,
@@ -61,4 +73,8 @@ public class ProjectController {
             @RequestParam(required = false) String thumbnail) {
                 projectService.updateProject(projectId, dateAdded, name, timeNeeded, material, description, thumbnail);
             }
+
+     */
+
+
 }
