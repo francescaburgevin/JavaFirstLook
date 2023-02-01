@@ -46,40 +46,70 @@ public class ProjectService {
         if(!exists){
             throw new IllegalStateException("Project with id "+id+" does not exist.");
         }
+        System.out.println("deleteProject javaService");
         projectRepository.deleteById(id);
     }
 
 
     @Transactional
-    public void updateProject(Long projectId, LocalDate dateAdded,
-                              String name, Integer timeNeeded,
-                              String material, String description,
-                              String thumbnail){
+    public void updateProject(
+            Long projectId,
+            LocalDate dateAdded,
+            String name,
+            Integer timeNeeded,
+            String material,
+            String description,
+            String thumbnail
+    ){
         Project project = projectRepository.findById(projectId)
-                .orElseThrow(()->new IllegalStateException(
+                .orElseThrow(() -> new IllegalStateException(
                         "Project with id "+projectId+" does not exist."
                 ));
-        if(name != null && name.length()>0
-                 && !Objects.equals(project.getName(), name)) {
+        if(
+                name != null && name.length() > 0 &&
+                !Objects.equals(project.getName(), name)
+        ) {
             project.setName(name);
+            project.setDateAdded(LocalDate.now());
         }
 
-        if(material != null && material.length()>0
-                && !Objects.equals(project.getMaterial(), material)) {
+        if(
+                timeNeeded != null &&
+                        timeNeeded > 0 &&
+                        !Objects.equals(project.getTimeNeeded(), timeNeeded)
+        ) {
+            project.setTimeNeeded(timeNeeded);
+            project.setDateAdded(LocalDate.now());
+        }
+
+        if(
+                material != null &&
+                material.length() > 0 &&
+                !Objects.equals(project.getMaterial(), material)
+        ) {
             project.setMaterial(material);
+            project.setDateAdded(LocalDate.now());
         }
 
-        if(description != null && description.length()>0
-                && !Objects.equals(project.getDescription(), description)) {
+        if(
+                description != null &&
+                description.length() > 0 &&
+                !Objects.equals(project.getDescription(), description)
+        ) {
             project.setDescription(description);
+            project.setDateAdded(LocalDate.now());
         }
 
-        if(thumbnail != null && thumbnail.length()>0
-                && !Objects.equals(project.getThumbnail(), thumbnail)) {
+        if(
+                thumbnail != null &&
+                thumbnail.length() > 0 &&
+                !Objects.equals(project.getThumbnail(), thumbnail)
+        ) {
             project.setThumbnail(thumbnail);
+            project.setDateAdded(LocalDate.now());
         }
 
-        //must finish. add date, time
+        //must finish. add date
     }
 
 }

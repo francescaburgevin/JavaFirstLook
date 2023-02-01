@@ -79,10 +79,8 @@ public class Project {
         this.name = name;
     }
 
-    public String getTimeNeeded() {
-        int hour = timeNeeded / 60;
-        int minute = timeNeeded % 60;
-        return hour+" hours, "+minute+" minutes";
+    public Integer getTimeNeeded() {
+        return timeNeeded;
     }
 
     public void setTimeNeeded(Integer timeNeeded) {
@@ -126,3 +124,4 @@ public class Project {
                 '}';
     }
 }
+

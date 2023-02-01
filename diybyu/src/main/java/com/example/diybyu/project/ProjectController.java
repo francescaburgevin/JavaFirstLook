@@ -30,7 +30,6 @@ public class ProjectController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/{id}")
     public Object getProjectById(@PathVariable("id") Long id){
-        System.out.println("getting project by id");
         return projectService.getProjectById(id);
     }
 
@@ -43,11 +42,14 @@ public class ProjectController {
         projectService.addNewProject(project);
     }
 
-    @DeleteMapping(path="{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping(path="/{id}")
     public void deleteProject(@PathVariable("id") Long id){
+        System.out.println("deleting project "+id);
         projectService.deleteProject(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "{id}")
     public void updateProject(
             @PathVariable("id") Long projectId,
