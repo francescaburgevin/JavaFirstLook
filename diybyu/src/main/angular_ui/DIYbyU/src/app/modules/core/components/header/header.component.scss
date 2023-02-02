@@ -1,0 +1,9 @@
+/*
+ * Custom translucent site header
+ */
+
+.site-header {
+  background-color: white;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
