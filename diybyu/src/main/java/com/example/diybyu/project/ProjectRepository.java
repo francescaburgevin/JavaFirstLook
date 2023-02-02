@@ -2,7 +2,6 @@ package com.example.diybyu.project;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.*;
 
@@ -11,7 +10,7 @@ import java.util.*;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-    @Query("SELECT p FROM Project p WHERE p.name LIKE CONCAT('%',:keyword,'%')")
-    List<Project> findProjectByKeyword(@Param("keyword") String keyword);
+    @Query("SELECT p FROM Project p WHERE CONCAT (p.name, p.material, p.description) LIKE CONCAT('%',:keyword,'%')")
+    List<Project> findProjectByKeyword(String keyword);
 
 }

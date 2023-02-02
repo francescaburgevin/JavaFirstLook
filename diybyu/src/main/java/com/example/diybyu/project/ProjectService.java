@@ -29,11 +29,11 @@ public class ProjectService {
 
     //add new project
     public void addNewProject(Project project){
-        System.out.println(project);
         projectRepository.save(project);
     }
 
     public List<Project> findByKeyword(String keyword){
+        System.out.println("findbykeyword in project service "+keyword);
         List<Project> projectByKeyword = projectRepository.findProjectByKeyword(keyword);
         if (projectByKeyword.isEmpty()){
             throw new IllegalStateException("nothing found");

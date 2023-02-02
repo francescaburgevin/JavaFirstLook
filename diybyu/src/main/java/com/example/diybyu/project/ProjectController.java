@@ -48,33 +48,21 @@ public class ProjectController {
         projectService.deleteProject(id);
     }
 
-
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/{id}")
     public void updateProject(
             @PathVariable("id") Long id,
             @RequestBody Project project
     ){
-        System.out.println("updating project "+id);
-        System.out.println(project);
         projectService.updateProject(project.getId(), project.getDateAdded(), project.getName(), project.getTimeNeeded(), project.getMaterial(), project.getDescription(), project.getThumbnail());
-
     }
-    /*
+
     @CrossOrigin(origins = "http://localhost:4200")
-    @PutMapping(path = "/{id}")
-    public void updateProject(
-            @PathVariable("id") Long projectId,
-            @RequestParam(required = false) LocalDate dateAdded,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) Integer timeNeeded,
-            @RequestParam(required = false) String material,
-            @RequestParam(required = false) String description,
-            @RequestParam(required = false) String thumbnail) {
-                projectService.updateProject(projectId, dateAdded, name, timeNeeded, material, description, thumbnail);
-            }
-
-     */
-
-
+    @GetMapping("keyword/{keyword}")
+    public List<Project> searchByKeyword(
+            @PathVariable("keyword") String keyword)
+    {
+        System.out.println("searchByKeyword in project controller "+keyword);
+        return projectService.findByKeyword(keyword);
+    }
 }
