@@ -3,7 +3,6 @@ package com.example.diybyu.project;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,9 +19,12 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
-    //return a static list
     public List<Project> getProjects(){
         return projectRepository.findAll();
+    }
+
+    public Object getProjectById(Long id){
+        return projectRepository.findById(id);
     }
 
     //add new project
@@ -30,52 +32,85 @@ public class ProjectService {
         projectRepository.save(project);
     }
 
-    //public void findKeyword(Project project){
-    //    Optional<Project> projectOptional = projectRepository.findProjectByKeyword(project.toString());
-    //    if(projectOptional.isPresent()){
-    //        return project;
-    //    }
-    //}
-
-    public void deleteProject(Long projectId){
-        boolean exists = projectRepository.existsById(projectId);
-        if(!exists){
-            throw new IllegalStateException("Project with id "+projectId+" does not exist.");
+    public List<Project> findByKeyword(String keyword){
+        System.out.println("findbykeyword in project service "+keyword);
+        List<Project> projectByKeyword = projectRepository.findProjectByKeyword(keyword);
+        if (projectByKeyword.isEmpty()){
+            throw new IllegalStateException("nothing found");
         }
-        projectRepository.deleteById(projectId);
+        return projectByKeyword;
+    }
+
+    public void deleteProject(Long id){
+        boolean exists = projectRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("Project with id "+id+" does not exist.");
+        }
+        System.out.println("deleteProject javaService");
+        projectRepository.deleteById(id);
     }
 
 
     @Transactional
-    public void updateProject(Long projectId, LocalDate date_added,
-                              String name, Integer time_needed,
-                              String material, String description,
-                              String thumbnail){
-        Project project = projectRepository.findById(projectId)
-                .orElseThrow(()->new IllegalStateException(
-                        "Project with id "+projectId+" does not exist."
+    public void updateProject(
+            Long id,
+            LocalDate dateAdded,
+            String name,
+            Integer timeNeeded,
+            String material,
+            String description,
+            String thumbnail
+    ){
+        Project project = projectRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Project with id "+id+" does not exist."
                 ));
-        if(name != null && name.length()>0
-                 && !Objects.equals(project.getName(), name)) {
+        if(
+                name != null && name.length() > 0 &&
+                !Objects.equals(project.getName(), name)
+        ) {
             project.setName(name);
+            project.setDateAdded(LocalDate.now());
         }
 
-        if(material != null && material.length()>0
-                && !Objects.equals(project.getMaterial(), material)) {
+        if(
+                timeNeeded != null &&
+                        timeNeeded > 0 &&
+                        !Objects.equals(project.getTimeNeeded(), timeNeeded)
+        ) {
+            project.setTimeNeeded(timeNeeded);
+            project.setDateAdded(LocalDate.now());
+        }
+
+        if(
+                material != null &&
+                material.length() > 0 &&
+                !Objects.equals(project.getMaterial(), material)
+        ) {
             project.setMaterial(material);
+            project.setDateAdded(LocalDate.now());
         }
 
-        if(description != null && description.length()>0
-                && !Objects.equals(project.getDescription(), description)) {
+        if(
+                description != null &&
+                description.length() > 0 &&
+                !Objects.equals(project.getDescription(), description)
+        ) {
             project.setDescription(description);
+            project.setDateAdded(LocalDate.now());
         }
 
-        if(thumbnail != null && thumbnail.length()>0
-                && !Objects.equals(project.getThumbnail(), thumbnail)) {
+        if(
+                thumbnail != null &&
+                thumbnail.length() > 0 &&
+                !Objects.equals(project.getThumbnail(), thumbnail)
+        ) {
             project.setThumbnail(thumbnail);
+            project.setDateAdded(LocalDate.now());
         }
 
-        //must finish. add date, time
+        projectRepository.save(project);
+        //must finish. add date
     }
 
 }

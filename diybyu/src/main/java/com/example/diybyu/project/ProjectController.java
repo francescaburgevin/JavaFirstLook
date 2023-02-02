@@ -1,7 +1,6 @@
 package com.example.diybyu.project;
 
 //all resources for the api
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +8,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="api/v1/project")
+@RequestMapping(path="api/v1/project/")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProjectController {
 
     private final ProjectService projectService;
@@ -20,31 +20,49 @@ public class ProjectController {
     }
 
     //get data
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/")
     public List<Project> getProjects(){
         return projectService.getProjects();
     }
 
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(path = "/{id}")
+    public Object getProjectById(@PathVariable("id") Long id){
+        return projectService.getProjectById(id);
+    }
+
+
+
     //add new resources, take request and map
-    @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/")
     public void registerNewProject(@RequestBody Project project){
         projectService.addNewProject(project);
     }
 
-    @DeleteMapping(path="{projectId}")
-    public void deleteProject(@PathVariable("projectId") Long projectId){
-        projectService.deleteProject(projectId);
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping(path="/{id}")
+    public void deleteProject(@PathVariable("id") Long id){
+        projectService.deleteProject(id);
     }
 
-    @PutMapping(path = "{projectId}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping(path = "/{id}")
     public void updateProject(
-            @PathVariable("projectId") Long projectId,
-            @RequestParam(required = false) LocalDate date_added,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) Integer time_needed,
-            @RequestParam(required = false) String material,
-            @RequestParam(required = false) String description,
-            @RequestParam(required = false) String thumbnail) {
-                projectService.updateProject(projectId, date_added, name, time_needed, material, description, thumbnail);
-            }
+            @PathVariable("id") Long id,
+            @RequestBody Project project
+    ){
+        projectService.updateProject(project.getId(), project.getDateAdded(), project.getName(), project.getTimeNeeded(), project.getMaterial(), project.getDescription(), project.getThumbnail());
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("keyword/{keyword}")
+    public List<Project> searchByKeyword(
+            @PathVariable("keyword") String keyword)
+    {
+        System.out.println("searchByKeyword in project controller "+keyword);
+        return projectService.findByKeyword(keyword);
+    }
 }
