@@ -1,0 +1,10 @@
+
+<app-search-bar
+(newKeywordEvent)="newKeyword($event)"
+></app-search-bar>
+
+<div *ngFor="let project of projects">
+    <app-project-card
+    [project]="project"
+    ></app-project-card>
+  <div>
