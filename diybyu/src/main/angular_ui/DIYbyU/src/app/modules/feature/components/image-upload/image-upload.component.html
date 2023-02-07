@@ -1,0 +1,48 @@
+<!-- image upload input 
+<div>
+    <div class="d-flex justify-content-center search1">
+        <div class="btn btn-primary btn-rounded">
+            <label class="form-label text-white m-1" for="select-btn">Choose file</label>
+            <input type="file" class="form-control d-none" id="select-btn" (change)="onFileChanged($event)" 
+            />
+        </div>
+
+        <div class="btn btn-primary btn-rounded">
+            <label class="form-label text-white m-1" for="upload-btn">Upload</label>
+            <input type="button" class="form-control d-none" 
+            id="upload-btn" (click)="onUpload()" 
+            />
+            </div>
+
+    </div>
+    <div class="mb-4 d-flex justify-content-center">
+        <div *ngIf="selectedFile">
+            <p>File selected :{{selectedFile.name}}</p>
+        </div>
+     </div>
+</div>
+-->
+
+
+<!-- user avatar -->
+<div class="field mb-4 col-12 md:col-6">
+    <label for="avatar" class="font-medium text-900">Avatar</label>
+    <div class="flex align-items-center">
+        <img [src]="imagePreview" class="mr-4 avatar" />
+        
+        <p-fileUpload 
+            id="avatar" 
+            mode="advanced" 
+            name="avatar" 
+            [customUpload]="true"  
+            [maxFileSize]="1000000" 
+            accept="image/*"  
+            styleClass="p-button-outlined p-button-plain" 
+            chooseLabel="Télécharger votre image"
+            (uploadHandler)="onUpload($event)"
+            
+        ></p-fileUpload>
+    
+    </div>
+</div>
+

@@ -1,11 +1,11 @@
 a {
-    color: #219ebc;
+    color: var(--primary);
     transition: color .15s ease-in-out;
     text-decoration:none;
 }
 
 a:hover {
-color: #023047;
+color: var(--primaryDark);
 text-decoration: none;
 }
 

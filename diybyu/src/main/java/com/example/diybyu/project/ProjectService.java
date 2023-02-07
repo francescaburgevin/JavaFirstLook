@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
+//import java.util.Optional;
 
 @Service
 public class ProjectService {
@@ -32,11 +32,12 @@ public class ProjectService {
         projectRepository.save(project);
     }
 
+
     public List<Project> findByKeyword(String keyword){
-        System.out.println("findbykeyword in project service "+keyword);
         List<Project> projectByKeyword = projectRepository.findProjectByKeyword(keyword);
         if (projectByKeyword.isEmpty()){
-            throw new IllegalStateException("nothing found");
+            //throw new IllegalStateException("nothing found");
+            return projectRepository.findAll();
         }
         return projectByKeyword;
     }

@@ -7,7 +7,7 @@ export class Project {
             public timeNeeded: number,
             public material: string,
             public description: string,
-            public thumbnail: string,
+            public thumbnail: Image[],
           ) {
             this.name=name;
             this.timeNeeded=timeNeeded;
@@ -17,8 +17,12 @@ export class Project {
            }
 }
 
-export class ProjectList {
 
-    constructor(
-    ) { }
+export class Image{
+  constructor(
+      public name: string,
+      public lastModified: number,
+      public size: number,
+      public type: string
+  ){}
 }

@@ -1,10 +1,8 @@
 package com.example.diybyu.project;
 
-//all resources for the api
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -26,14 +24,11 @@ public class ProjectController {
         return projectService.getProjects();
     }
 
-
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/{id}")
     public Object getProjectById(@PathVariable("id") Long id){
         return projectService.getProjectById(id);
     }
-
-
 
     //add new resources, take request and map
     @CrossOrigin(origins = "http://localhost:4200")
@@ -62,7 +57,7 @@ public class ProjectController {
     public List<Project> searchByKeyword(
             @PathVariable("keyword") String keyword)
     {
-        System.out.println("searchByKeyword in project controller "+keyword);
         return projectService.findByKeyword(keyword);
     }
+
 }

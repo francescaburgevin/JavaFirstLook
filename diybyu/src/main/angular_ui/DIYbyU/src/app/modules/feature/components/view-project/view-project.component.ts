@@ -1,9 +1,5 @@
-import { IfStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Project } from 'src/app/models/project.model';
-//import { Subscription } from 'rxjs';
-//import { Project } from 'src/app/models/project.model';
 import { ProjectService} from 'src/app/service/project-service.service';
 
 @Component({
@@ -46,9 +42,5 @@ export class ViewProjectComponent implements OnInit {
       }
     );
   }
-
-
-    
-  
 
 }

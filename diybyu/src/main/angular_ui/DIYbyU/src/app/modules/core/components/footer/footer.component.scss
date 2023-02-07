@@ -1,0 +1,11 @@
+footer{
+    background-color: var(--backLight);
+    color: var(--secondary);
+
+    a{
+        color: var(--secondary);
+    }
+    a:hover{
+        color: var(--secondaryDark);
+    }
+}

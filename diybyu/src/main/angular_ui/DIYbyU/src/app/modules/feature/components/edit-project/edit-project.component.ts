@@ -19,7 +19,7 @@ export class EditProjectComponent implements OnInit {
     timeNeeded: 0,
     material: '',
     description: '',
-    thumbnail: ''
+    thumbnail: []
   };
   submitted: boolean = false;
   data: any; 

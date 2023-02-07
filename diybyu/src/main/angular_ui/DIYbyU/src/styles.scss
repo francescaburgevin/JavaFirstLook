@@ -1,1 +1,20 @@
+:root {
+    --primaryLight: #8ecae6;
+    --primary: #219ebc;
+    --primaryDark:#023047;
+    --secondaryLight:#ffb703;
+    --secondary:#fb8500;
+    --secondaryDark:#d36505;
+    --backLight: white;
+    --backDark: #023047;
+    --btn: rgb(116, 114, 114);
+  }
+
+
+
 @import '~bootstrap/dist/css/bootstrap.min.css';/* You can add global styles to this file, and also import other style files */
+
+
+/* Importing Bootstrap SCSS file. */
+//@import '~bootstrap/scss/bootstrap';
+@import '../node_modules/bootstrap/scss/bootstrap.scss';

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/service/project-service.service';
 import { NgForm } from '@angular/forms';
-import { Project } from 'src/app/models/project.model';
+import { Project, Image } from 'src/app/models/project.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,13 +18,23 @@ export class AddProjectComponent {
     timeNeeded: 0,
     material: '',
     description: '',
-    thumbnail: ''
+    thumbnail: []
   };
-  submitted = false;
+  submitted: boolean = false;
+  fileName: string = "";
+
+
+  public picture: Image = new Image("", 0, 0, "");
+  public selectedFile: File = new File([], "");
+  public imagePreview: any = "/assets/images/embroidery.jpg";
+  public formData: FormData = new FormData();
+
 
   constructor(
     private projectService: ProjectService,
     private router: Router) { }
+
+  ngOnInit(){}
 
   saveProject(form: NgForm): void {
     const data = {
@@ -56,12 +66,30 @@ export class AddProjectComponent {
       timeNeeded: 0,
       material: '',
       description: '',
-      thumbnail: ''
+      thumbnail: []
     };
   }
 
   cancel() {
     this.router.navigate(['projects']);
+  }
+
+  uploadedImage(newImage: File) {
+    console.log(newImage);
+    if(newImage) {
+      //this.project.thumbnail = newImage.name;
+      //console.log(this.project.thumbnail);
+      //const formData = new FormData();
+      //formData.append("thumbnail", newImage);
+      //sconsole.log(formData.get("thumbnail"));
+
+      //const upload$ = this.http.post("/api/thumbnail-upload", formData);
+
+      //upload$.subscribe();
+  }
+
+    
+    //let target_path = path.resolve( __dirname, `../client/src/images/${ req.files.uploads[0].name }` );
   }
   
 }
