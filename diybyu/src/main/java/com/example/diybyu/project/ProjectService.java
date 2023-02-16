@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-//import java.util.Optional;
+
 
 @Service
 public class ProjectService {
@@ -60,7 +60,7 @@ public class ProjectService {
             Integer timeNeeded,
             String material,
             String description,
-            String thumbnail
+            String imageFileCode
     ){
         Project project = projectRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException(
@@ -102,11 +102,10 @@ public class ProjectService {
         }
 
         if(
-                thumbnail != null &&
-                thumbnail.length() > 0 &&
-                !Objects.equals(project.getThumbnail(), thumbnail)
+                imageFileCode != null && imageFileCode.length() > 0 &&
+                !Objects.equals(project.getImageFileCode(), imageFileCode)
         ) {
-            project.setThumbnail(thumbnail);
+            project.setImageFileCode(imageFileCode);
             project.setDateAdded(LocalDate.now());
         }
 

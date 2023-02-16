@@ -34,6 +34,7 @@ public class ProjectController {
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/")
     public void registerNewProject(@RequestBody Project project){
+        System.out.println("register a new project in project controller");
         projectService.addNewProject(project);
     }
 
@@ -49,7 +50,9 @@ public class ProjectController {
             @PathVariable("id") Long id,
             @RequestBody Project project
     ){
-        projectService.updateProject(project.getId(), project.getDateAdded(), project.getName(), project.getTimeNeeded(), project.getMaterial(), project.getDescription(), project.getThumbnail());
+        projectService.updateProject(project.getId(), project.getDateAdded(), project.getName(),
+                project.getTimeNeeded(), project.getMaterial(), project.getDescription(),
+                project.getImageFileCode());
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

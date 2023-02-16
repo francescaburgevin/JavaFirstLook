@@ -19,7 +19,7 @@ public class ProjectConfig {
                     360,
                     "Knitting needles size 6 and 5 balls of yarn",
             "A beginner knitting project where repetition is key.",
-            "/src/main/resources/images/knit_scarf.jpg"
+                    "daJiWCCR"
             );
 
             Project oriBateau = new Project(
@@ -28,7 +28,7 @@ public class ProjectConfig {
                     5,
                     "One square piece of paper.",
                     "Kids of all ages will love to build this boat.",
-                    "./main/resources/images/origami_boat.jpg"
+                   "daJiWCCR"
             );
 
             repository.saveAll(

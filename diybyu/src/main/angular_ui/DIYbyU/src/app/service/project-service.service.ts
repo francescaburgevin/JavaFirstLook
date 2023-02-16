@@ -39,6 +39,14 @@ export class ProjectService {
     return this.http.get(`${this.projectsUrl}keyword/${keyword}`);
   }
 
+  public uploadImage(file: any): Observable<any>
+  {
+    return this.http.post(`${this.projectsUrl}uploadFile`, file);
+  }
 
+  public downloadImage (fileName: String): Observable<any>
+  {
+    return this.http.get(`${this.projectsUrl}downloadFile/${fileName}`, {responseType: 'text'});
+  }
   
 }

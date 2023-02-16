@@ -2,7 +2,11 @@ img{
   width: 248%;
   height: 56%;
   max-height: 300px;
-  transform: rotate(-90deg);
+  transform: rotate(-47deg);
+}
+
+.app-project-list{
+  width: inherit;
 }
 
 .project-title{
@@ -17,7 +21,7 @@ img{
 //orange card
 .product-device {
   position: absolute;
-  right: 22%;
+  right: 18%;
   bottom: -10%;
   width: 169px;
   height: 437px;

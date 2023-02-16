@@ -1,7 +1,21 @@
 .project-card{
     background-color: var(--secondary);
     width: 500px;
-    height: 400px;
-
     margin: 5px;
+
+    img{
+        width: 300px;
+        height: 300px;
+    }
+
+    .project-card-btns{
+        margin: 5px;
+        display: flex;
+        justify-content: space-evenly;
+
+        button{
+            background-color: transparent;
+            border: 1px solid white;
+          }
+  }
 }

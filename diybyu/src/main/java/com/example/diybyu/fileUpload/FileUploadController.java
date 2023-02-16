@@ -13,25 +13,26 @@ import java.io.IOException;
 @CrossOrigin(origins = "http://localhost:4200")
 public class FileUploadController {
 
-
-    @PostMapping("/uploadFile")
+    @PostMapping("uploadFile")
     public ResponseEntity<FileUploadResponse> uploadFile(
             @RequestParam("file") MultipartFile multipartFile
     ) throws IOException {
-
         //file name
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        String name = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
         //file size
         Long size = multipartFile.getSize();
 
         //file code
-        String fileCode = FileUploadUtility.saveFile(fileName, multipartFile);
+        String fileCode = FileUploadUtility.saveFile(name, multipartFile);
 
         FileUploadResponse response = new FileUploadResponse();
-        response.setFileName(fileName);
+        response.setName(name);
         response.setSize(size);
-        response.setDownloadUri("downloadFile/"+fileCode);
+        //response.setDownloadUri("downloadFile/"+fileCode);
+        response.setDownloadUri(fileCode);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+
 }

@@ -1,7 +1,6 @@
 package com.example.diybyu.project;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -24,7 +23,7 @@ public class Project {
     private Integer timeNeeded;
     private String material;
     private String description;
-    private String thumbnail;
+    private String imageFileCode;
 
     //empty constructor
     public Project() {
@@ -32,25 +31,25 @@ public class Project {
 
     // constructor with id
     public Project(Long id, LocalDate dateAdded, String name, Integer timeNeeded,
-                   String material, String description, String thumbnail) {
+                   String material, String description, String imageFileCode) {
         this.id = id;
         this.dateAdded = dateAdded;
         this.name = name;
         this.timeNeeded = timeNeeded;
         this.material = material;
         this.description = description;
-        this.thumbnail = thumbnail;
+        this.imageFileCode = imageFileCode;
     }
 
     //constructor without id
     public Project(LocalDate dateAdded, String name, Integer timeNeeded,
-                   String material, String description, String thumbnail) {
+                   String material, String description, String imageFileCode) {
         this.dateAdded = dateAdded;
         this.name = name;
         this.timeNeeded = timeNeeded;
         this.material = material;
         this.description = description;
-        this.thumbnail = thumbnail;
+        this.imageFileCode = imageFileCode;
     }
 
 
@@ -103,13 +102,15 @@ public class Project {
         this.description = description;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
+    public String getImageFileCode() {
+        return imageFileCode;
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setImageFileCode(String imageFileCode) {
+        this.imageFileCode = imageFileCode;
     }
+
+
 
     @Override
     public String toString() {
@@ -120,7 +121,7 @@ public class Project {
                 ", time_needed=" + timeNeeded +
                 ", material='" + material + '\'' +
                 ", description=" + description +
-                ", thumbnail='" + thumbnail + '\'' +
+                ", imageFileCode='" + imageFileCode + '\'' +
                 '}';
     }
 }

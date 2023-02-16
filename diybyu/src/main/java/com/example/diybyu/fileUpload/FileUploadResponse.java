@@ -2,7 +2,7 @@ package com.example.diybyu.fileUpload;
 
 public class FileUploadResponse {
 
-    private String fileName;
+    private String name;
     private String downloadUri;
     private long size;
 
@@ -11,20 +11,20 @@ public class FileUploadResponse {
     }
 
     //constructor full
-    public FileUploadResponse(String fileName, String downloadUri, long size) {
-        this.fileName = fileName;
+    public FileUploadResponse(String name, String downloadUri, Long size) {
+        this.name = name;
         this.downloadUri = downloadUri;
         this.size = size;
     }
 
     //getters & setters
-    public String getFileName() {
-        return fileName;
+    public String getName() {
+        return name;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-        System.out.println(this.fileName);
+    public void setName(String name) {
+        this.name = name;
+        System.out.println("Set file name to : "+this.name);
     }
 
     public String getDownloadUri() {
