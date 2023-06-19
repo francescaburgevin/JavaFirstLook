@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/project.model';
 import { ProjectService } from 'src/app/service/project-service.service';
+import { saveAs } from 'file-saver';
+
 
 @Component({
   selector: 'app-edit-project',
@@ -14,15 +16,17 @@ export class EditProjectComponent implements OnInit {
   id: number = 0;
   project: Project = {
     id: 0,
-    dateAdded: 0,
+    dateAdded: "",
     name: '',
     timeNeeded: 0,
     material: '',
     description: '',
-    thumbnail: ''
+    imageFileCode: ''
   };
   submitted: boolean = false;
   data: any; 
+  public formData = new FormData();
+  public fileName: string = "";
 
 
   constructor(
@@ -47,18 +51,32 @@ export class EditProjectComponent implements OnInit {
           this.submitted=false;
         }
       });
-    } else { this.router.navigate(['projects'])}
+    } else { this.router.navigate(['projects'])};
+    
+    this.projectService.uploadImage(this.project.imageFileCode)
+    .subscribe({
+      next: (response) => {
+        console.log(response);
+        this.submitted = true;
+      },
+      error: (errorMessage) => 
+      {
+        console.error(errorMessage);
+        this.submitted=false;
+      }
+    });
+    
   }
 
   updateProjectForm(form: NgForm): void {
     this.data = {
       id: this.project.id,
-      dateAdded: 2222,
+      dateAdded: "",
       name: this.project.name,
       timeNeeded: this.project.timeNeeded,
       material: this.project.material,
       description: this.project.description,
-      thumbnail: this.project.thumbnail
+      imageFileCode: this.project.imageFileCode
     };
     this.updateProject(this.project.id, this.data);
   }
@@ -80,6 +98,22 @@ export class EditProjectComponent implements OnInit {
     });
   }
 
+  uploadedImage(newImage: File) {
+    this.fileName = newImage.name;
+    if(newImage) {
+      this.formData.append("file", newImage);
+
+      this.projectService.uploadImage(this.formData).subscribe({
+        next: (res) => {
+          this.submitted = true;
+          this.project.imageFileCode = res.downloadUri;
+          console.log("new uri : "+this.project.imageFileCode);
+        },
+        error: (e) => console.error("image not uploaded")
+      });
+
+    }
+  }
 
   cancel() {
     this.router.navigate(['projects']);

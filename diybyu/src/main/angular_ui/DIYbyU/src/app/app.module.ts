@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +18,9 @@ import { ViewProjectComponent } from './modules/feature/components/view-project/
 import { ProjectCardComponent } from './modules/feature/components/project/project-card/project-card.component';
 import { ProjectListComponent } from './modules/feature/components/project/project-list/project-list.component';
 import { SearchBarComponent } from './modules/feature/components/search-bar/search-bar.component';
+import { ImageUploadComponent } from './modules/feature/components/image-upload/image-upload.component';
+
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 @NgModule({
@@ -32,14 +35,19 @@ import { SearchBarComponent } from './modules/feature/components/search-bar/sear
     ViewProjectComponent,
     ProjectCardComponent,
     ProjectListComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ImageUploadComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FileUploadModule,
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [],
   bootstrap: [AppComponent]

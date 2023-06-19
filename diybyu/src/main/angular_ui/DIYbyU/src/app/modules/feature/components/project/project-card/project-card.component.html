@@ -1,12 +1,22 @@
-<!--project card with alternating colors -->
-<div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+<div class="project-card me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
   <div class="my-3 py-3">
     <h2 class="display-5">{{project.name}}</h2>
     <p class="lead">{{project.description}}</p>
   </div>
-  <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
 
-  <button (click)="viewProject(project.id)" class="btn btn-danger btn-delete">View</button>
-  <button (click)="updateProject(project.id)" class="btn btn-danger btn-delete">Modify</button>
-  <button (click)="deleteProject(project.id)" class="btn btn-danger btn-delete">Delete</button>
+  <div class="bg-light shadow-sm mx-auto"> 
+    <img title="image by url" src="http://localhost:8080/api/v1/project/downloadFile/{{project.imageFileCode}}" />
+  </div>
+
+  <div class="project-card-btns">
+    <button (click)="viewProject(project.id)" class="btn btn-danger btn-delete">View</button>
+    <button (click)="updateProject(project.id)" class="btn btn-danger btn-delete">Modify</button>
+    <button (click)="deleteConfirm(project.id)" class="btn btn-danger btn-delete">Delete</button>
+  </div>
+
+</div>
+
+<div *ngIf="confirmDelete" class="delete-modal">
+  <p>delete this project</p>
+  
 </div>

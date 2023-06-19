@@ -1,0 +1,21 @@
+.btn-primary{
+    background-color: var(--primary);
+    color: var(--backLight);
+    border: 1px solid var(--primary);
+    margin-left: 5px;
+  }
+
+  .form-outline{
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    label{
+        width: -webkit-fill-available;
+        color:var(--primary);
+    }
+  
+    input{
+      border: 1px solid var(--primary);
+    }
+  }

@@ -1,5 +1,7 @@
-<div class="container"> 
+<div class="project-add"> 
 
+    <h1>Add a project by filling out this form:</h1>
+    
     <form #form="ngForm" (ngSubmit)="saveProject(form)">
 
         <!-- 2 column grid layout with text inputs for the title and duration -->
@@ -37,7 +39,17 @@
           [ngModelOptions]="{standalone: true}"></textarea >
           <label class="form-label" for="description">Description</label>
         </div>
-      
+
+<app-image-upload
+    (imageUploadEvent)="uploadedImage($event)"
+    ></app-image-upload>
+        
+    <div *ngIf='fileName'>
+        <p>Uploaded : {{fileName}}</p>
+    </div>
+    
+    
+
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
        

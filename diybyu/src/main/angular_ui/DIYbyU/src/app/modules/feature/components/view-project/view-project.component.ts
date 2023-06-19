@@ -1,9 +1,6 @@
-import { IfStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/project.model';
-//import { Subscription } from 'rxjs';
-//import { Project } from 'src/app/models/project.model';
 import { ProjectService} from 'src/app/service/project-service.service';
 
 @Component({
@@ -15,7 +12,7 @@ export class ViewProjectComponent implements OnInit {
   
   id: number = 0;
   errorMessage: string ="error : getbyid";
-  project: any;
+  project: Project = new Project(0, "", "", 0, "", "", "") ;
 
   constructor(
     private projectService: ProjectService,
@@ -27,28 +24,21 @@ export class ViewProjectComponent implements OnInit {
     var urlNumberString = this.route.snapshot.paramMap.get('id');
     if (urlNumberString) {
       this.id=parseInt(urlNumberString);
-      this.getProjectById(this.id);
+      this.getProject();
     } else { this.router.navigate(['/'])}
 }
 
 
-  public getProjectById(id: number): void {
-    console.log("getProjectById launched");
-    console.log("project number : "+id);
 
-    this.projectService.getProjectById(id).subscribe(
-      data => {
-        this.project = data;
-        console.log(data);
+  public getProject(): void {
+
+    this.projectService.getProjectById(this.id)
+    .subscribe({
+      next: (data) => {
+        this.project=data;
       },
-      error => {
-        console.log(this.errorMessage);
-      }
-    );
+      error: (errorMessage) => console.error(errorMessage)
+    });
   }
-
-
-    
-  
 
 }

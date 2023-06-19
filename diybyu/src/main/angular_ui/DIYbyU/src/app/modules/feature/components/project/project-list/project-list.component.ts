@@ -30,7 +30,6 @@ keyword: string = "";
     .subscribe({
       next: (data) => {
         this.projects=data;
-        console.log(data);
       },
       error: (errorMessage) => console.error(errorMessage)
     });
@@ -40,12 +39,10 @@ keyword: string = "";
     this.keyword = newWord ;
     this.projectService.findByKeyword(this.keyword).subscribe({
       next: (data) => {
-        console.log(data);
         this.projects = data;
       },
       error: (errorMessage) => console.error(errorMessage)
     });
-
   }
     
 }

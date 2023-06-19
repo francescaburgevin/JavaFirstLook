@@ -1,0 +1,19 @@
+.project-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btn-info{
+    color: var(--backLight);
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    height: max-content;
+  }

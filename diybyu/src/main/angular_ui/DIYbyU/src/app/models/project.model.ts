@@ -2,23 +2,17 @@ export class Project {
 
      constructor(
             public id: number,
-            public dateAdded: number,
+            public dateAdded: string,
             public name: string,
             public timeNeeded: number,
             public material: string,
             public description: string,
-            public thumbnail: string,
+            public imageFileCode: ""
           ) {
             this.name=name;
             this.timeNeeded=timeNeeded;
             this.material=material;
             this.description=description;
-            this.thumbnail=thumbnail;
+            this.imageFileCode=imageFileCode;
            }
-}
-
-export class ProjectList {
-
-    constructor(
-    ) { }
 }

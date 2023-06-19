@@ -1,22 +1,36 @@
 img{
-  width: 100%;
-  transform: rotate(-90deg);
+  width: 248%;
+  height: 56%;
+  max-height: 300px;
+  transform: rotate(-47deg);
 }
+
+.app-project-list{
+  width: inherit;
+}
+
+.project-title{
+  display: flex;
+  justify-content: space-between;
+}
+
 /*
  * Dummy devices (replace them with your own or something else entirely!)
  */
 
+//orange card
 .product-device {
   position: absolute;
-  right: 10%;
-  bottom: -30%;
-  width: 300px;
-  height: 540px;
-  background-color: #333;
-  border-radius: 21px;
-  transform: rotate(48deg);
+  right: 18%;
+  bottom: -10%;
+  width: 169px;
+  height: 437px;
+  background-color: var(--secondary);
+  //border-radius: 21px;
+  transform: rotate(57deg);
 }
 
+/*
 .product-device::before {
   position: absolute;
   top: 10%;
@@ -24,14 +38,28 @@ img{
   bottom: 10%;
   left: 10px;
   content: "";
-  background-color: rgba(255, 255, 255, .1);
+  background-color: transparent;
   border-radius: 5px;
 }
+*/
 
+//blue card
 .product-device-2 {
   top: -25%;
   right: auto;
   bottom: 0;
   left: 5%;
-  background-color: #e5e5e5;
+  background-color: var(--primary);
+}
+
+h1{
+  color:var(--secondary);
+}
+
+h2{
+  color: var(--primaryDark);
+}
+
+p{
+  color:var(--primary);
 }

@@ -1,0 +1,34 @@
+.project-add{
+    margin:100px;
+
+    .btn-primary{
+        background-color: var(--primary);
+        border: none;
+        margin: 5px;
+    }
+
+    .btn-primary:hover{
+        background-color: var(--primaryDark);
+    }
+
+    .btn-delete{
+        background-color: var(--secondary);
+        border: none;
+        margin: 5px;
+    }
+
+    .btn-delete:hover{
+        background-color: var(--secondaryDark);
+    }
+
+    label{
+        color:var(--primaryDark);
+    }
+
+    input, .form-control{
+        border-color: var(--primaryDark);
+        color: var(--primaryDark);
+    }
+
+   
+}
